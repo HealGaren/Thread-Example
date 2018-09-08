@@ -1,8 +1,8 @@
 package com.example.healgaren.example_thread;
 
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,7 +11,6 @@ public class Example3Activity extends AppCompatActivity {
 
     Button calcBtn;
     TextView calcResultText;
-    Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,22 +23,7 @@ public class Example3Activity extends AppCompatActivity {
         calcBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                calcResultText.setText("계산 중...");
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        final int result = calcSomethingBoringJob();
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                calcResultText.setText(String.valueOf(result));
-                            }
-                        });
-                    }
-                }).start();
-
+                new MyTask().execute();
             }
         });
 
@@ -54,5 +38,22 @@ public class Example3Activity extends AppCompatActivity {
         return 3;
     }
 
+    class MyTask extends AsyncTask<Void, Void, Integer> {
+
+        @Override
+        protected void onPreExecute() {
+            calcResultText.setText("계산 중...");
+        }
+
+        @Override
+        protected Integer doInBackground(Void... voids) {
+            return calcSomethingBoringJob();
+        }
+
+        @Override
+        protected void onPostExecute(Integer result) {
+            calcResultText.setText(String.valueOf(result));
+        }
+    }
 
 }

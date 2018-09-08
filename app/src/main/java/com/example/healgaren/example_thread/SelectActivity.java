@@ -33,7 +33,7 @@ public class SelectActivity extends AppCompatActivity implements View.OnClickLis
                 nextActivityClass = Example2Activity.class;
                 break;
             case R.id.btn_example3:
-                nextActivityClass = Example1Activity.class;
+                nextActivityClass = Example3Activity.class;
                 break;
         }
         startActivity(new Intent(this, nextActivityClass));
