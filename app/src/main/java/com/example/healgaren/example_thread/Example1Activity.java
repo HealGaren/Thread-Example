@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class NextActivity extends AppCompatActivity {
+public class Example1Activity extends AppCompatActivity {
 
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh시 mm분 ss초", Locale.KOREA);
 
@@ -20,7 +20,7 @@ public class NextActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_next);
+        setContentView(R.layout.activity_example1);
 
         text = findViewById(R.id.text);
 
